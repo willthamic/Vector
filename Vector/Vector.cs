@@ -4,9 +4,9 @@ namespace Vector
 {
     public class Vector3
     {
-        float x;
-        float y;
-        float z;
+        public float x;
+        public float y;
+        public float z;
 
         public Vector3 (float x0, float y0, float z0)
         {
@@ -24,6 +24,11 @@ namespace Vector
         {
             float magnitude = this.Magnitude();
             return new Vector3(x / magnitude, y / magnitude, z / magnitude);
+        }
+
+        public String ToString ()
+        {
+            return "<" + x + "," + y + "," + z + ">";
         }
 
         public static Vector3 Sum (Vector3 a, Vector3 b)
@@ -64,6 +69,16 @@ namespace Vector
         public static Vector3 operator *(float a, Vector3 b)
         {
             return Scale(b, a);
+        }
+
+        public static Vector3 operator /(Vector3 a, float b)
+        {
+            return Scale(a, 1f / b);
+        }
+
+        public static Vector3 operator /(float a, Vector3 b)
+        {
+            return Scale(b, 1f / a);
         }
     }
 }
