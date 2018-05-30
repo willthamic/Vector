@@ -4,9 +4,9 @@ namespace Vector
 {
     public class Vector3
     {
-        float x;
-        float y;
-        float z;
+        public float x;
+        public float y;
+        public float z;
 
         public Vector3 (float x0, float y0, float z0)
         {
@@ -44,6 +44,17 @@ namespace Vector
         public String ToString ()
         {
             return "<" + x + "," + y + "," + z + ">";
+        }
+
+        public static Vector3 RayCast (Vector3 origin, Vector3 direction, Plane plane)
+        {
+            direction = direction.Unit();
+            float denominator = plane.normal.x * direction.x + plane.normal.y * direction.y + plane.normal.z * direction.z;
+            if (denominator == 0)
+                return null;
+            float numerator = plane.d - plane.normal.x * origin.x - plane.normal.y * origin.y - plane.normal.z * origin.z;
+            float t = numerator / denominator;
+            return origin + direction * t;
         }
 
         public static Vector3 Sum (Vector3 a, Vector3 b)
@@ -96,4 +107,37 @@ namespace Vector
             return Scale(b, 1f / a);
         }
     }
+
+    public class Plane
+    {
+        public Vector3 normal;
+        public float d;
+
+        public Plane(Vector3 normal0, float d0)
+        {
+            normal = normal0;
+            d = d0;
+        }
+
+        public Plane(float x, float y, float z, float d0)
+        {
+            normal = new Vector3(x, y, z);
+            d = d0;
+        }
+
+        public Plane (Vector3 o, Vector3 u, Vector3 v)
+        {
+            normal = Vector3.Normal(u, v);
+            d = Vector3.Dot(normal, o);
+        }
+
+        public String ToString ()
+        {
+            String x = normal.x >= 0 ? "+" + normal.x.ToString() : normal.x.ToString();
+            String y = normal.y >= 0 ? "+" + normal.y.ToString() : normal.y.ToString();
+            String z = normal.z >= 0 ? "+" + normal.z.ToString() : normal.z.ToString();
+            return x + "x" + y + "y" + z + "z=" + d.ToString();
+        }
+    }
+
 }
