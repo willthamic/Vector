@@ -138,6 +138,17 @@ namespace Vector
             String z = normal.z >= 0 ? "+" + normal.z.ToString() : normal.z.ToString();
             return x + "x" + y + "y" + z + "z=" + d.ToString();
         }
+
+        public static Vector3 RayCast(Vector3 origin, Vector3 direction, Plane plane)
+        {
+            direction = direction.Unit();
+            float denominator = plane.normal.x * direction.x + plane.normal.y * direction.y + plane.normal.z * direction.z;
+            if (denominator == 0)
+                return null;
+            float numerator = plane.d - plane.normal.x * origin.x - plane.normal.y * origin.y - plane.normal.z * origin.z;
+            float t = numerator / denominator;
+            return origin + direction * t;
+        }
     }
 
 }
