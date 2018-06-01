@@ -126,6 +126,21 @@ namespace Vector
     }
 
     /// <summary>
+    /// Represents a line in 3-dimensional space defined by an origin and direction vectors.
+    /// </summary>
+    public class Line
+    {
+        public Vector3 origin;
+        public Vector3 direction;
+
+        public Line(Vector3 o, Vector3 d)
+        {
+            origin = o;
+            direction = d;
+        }
+    }
+
+    /// <summary>
     /// Represents a 3-dimensional plane in Point-Normal form.
     /// </summary>
     public class Plane
@@ -165,15 +180,15 @@ namespace Vector
         /// <summary>
         /// Returns the intersection of a specified line and plane.
         /// </summary>
-        public static Vector3 RayCast(Vector3 origin, Vector3 direction, Plane plane)
+        public static Vector3 RayCast(Line line, Plane plane)
         {
-            direction = direction.Unit();
-            float denominator = plane.normal.x * direction.x + plane.normal.y * direction.y + plane.normal.z * direction.z;
+            line.direction = line.direction.Unit();
+            float denominator = plane.normal.x * line.direction.x + plane.normal.y * line.direction.y + plane.normal.z * line.direction.z;
             if (denominator == 0)
                 return null;
-            float numerator = plane.d - plane.normal.x * origin.x - plane.normal.y * origin.y - plane.normal.z * origin.z;
+            float numerator = plane.d - plane.normal.x * line.origin.x - plane.normal.y * line.origin.y - plane.normal.z * line.origin.z;
             float t = numerator / denominator;
-            return origin + direction * t;
+            return line.origin + line.direction * t;
         }
     }
 
