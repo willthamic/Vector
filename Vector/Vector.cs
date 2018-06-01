@@ -2,11 +2,15 @@
 
 namespace Vector
 {
+    /// <summary>
+    /// Represents a 3-dimensional vector in Cartesian form.
+    /// </summary>
     public class Vector3
     {
         public float x;
         public float y;
         public float z;
+        
 
         public Vector3 (float x0, float y0, float z0)
         {
@@ -15,17 +19,26 @@ namespace Vector
             z = z0;
         }
 
+        /// <summary>
+        /// Returns the magnitude of a specified vector.
+        /// </summary>
         public float Magnitude ()
         {
             return (float) Math.Sqrt(x * x + y * y + z * z);
         }
 
+        /// <summary>
+        /// Returns the unit vector corresponding to a specified vector..
+        /// </summary>
         public Vector3 Unit ()
         {
             float magnitude = this.Magnitude();
             return new Vector3(x / magnitude, y / magnitude, z / magnitude);
         }
 
+        /// <summary>
+        /// Returns the normal unit vector to two specificed vectors.
+        /// </summary>
         public static Vector3 Normal(Vector3 u, Vector3 v)
         {
             float u1 = u.x;
@@ -41,37 +54,41 @@ namespace Vector
             return new Vector3(x, y, z).Unit();
         }
 
+        /// <summary>
+        /// Converts the vector to its equivalent string representation.
+        /// </summary>
         public String ToString ()
         {
             return "<" + x + "," + y + "," + z + ">";
         }
 
-        public static Vector3 RayCast (Vector3 origin, Vector3 direction, Plane plane)
-        {
-            direction = direction.Unit();
-            float denominator = plane.normal.x * direction.x + plane.normal.y * direction.y + plane.normal.z * direction.z;
-            if (denominator == 0)
-                return null;
-            float numerator = plane.d - plane.normal.x * origin.x - plane.normal.y * origin.y - plane.normal.z * origin.z;
-            float t = numerator / denominator;
-            return origin + direction * t;
-        }
-
+        /// <summary>
+        /// Returns the sum of two specified vectors.
+        /// </summary>
         public static Vector3 Sum (Vector3 a, Vector3 b)
         {
             return new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
         }
 
+        /// <summary>
+        /// Returns the difference between two specified vectors.
+        /// </summary>
         public static Vector3 Subtract (Vector3 a, Vector3 b)
         {
             return new Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
         }
 
+        /// <summary>
+        /// Returns the product of specified vector and scalar.
+        /// </summary>
         public static Vector3 Scale (Vector3 a, float b)
         {
             return new Vector3(a.x * b, a.y * b, a.z * b);
         }
 
+        /// <summary>
+        /// Returns the dot product of two specified vectors.
+        /// </summary>
         public static float Dot (Vector3 a, Vector3 b)
         {
             return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
@@ -108,6 +125,9 @@ namespace Vector
         }
     }
 
+    /// <summary>
+    /// Represents a 3-dimensional plane in Point-Normal form.
+    /// </summary>
     public class Plane
     {
         public Vector3 normal;
@@ -131,6 +151,9 @@ namespace Vector
             d = Vector3.Dot(normal, o);
         }
 
+        /// <summary>
+        /// Converts the plane to its equivalent string representation.
+        /// </summary>
         public String ToString ()
         {
             String x = normal.x >= 0 ? "+" + normal.x.ToString() : normal.x.ToString();
@@ -139,6 +162,9 @@ namespace Vector
             return x + "x" + y + "y" + z + "z=" + d.ToString();
         }
 
+        /// <summary>
+        /// Returns the intersection of a specified line and plane.
+        /// </summary>
         public static Vector3 RayCast(Vector3 origin, Vector3 direction, Plane plane)
         {
             direction = direction.Unit();
