@@ -11,7 +11,6 @@ namespace Vector
         public float y;
         public float z;
         
-
         public Vector3 (float x0, float y0, float z0)
         {
             x = x0;
@@ -180,15 +179,15 @@ namespace Vector
         /// <summary>
         /// Returns the intersection of a specified line and plane.
         /// </summary>
-        public static Vector3 RayCast(Line line, Plane plane)
+        public static (bool, Vector3, float) RayCast(Line line, Plane plane)
         {
             line.direction = line.direction.Unit();
             float denominator = plane.normal.x * line.direction.x + plane.normal.y * line.direction.y + plane.normal.z * line.direction.z;
             if (denominator == 0)
-                return null;
+                return (false, null, 0);
             float numerator = plane.d - plane.normal.x * line.origin.x - plane.normal.y * line.origin.y - plane.normal.z * line.origin.z;
             float t = numerator / denominator;
-            return line.origin + line.direction * t;
+            return (true, line.origin + line.direction * t, t);
         }
     }
 
