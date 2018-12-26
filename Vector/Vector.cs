@@ -11,11 +11,11 @@ namespace Vector
         public float y;
         public float z;
         
-        public Vector3 (float x0, float y0, float z0)
+        public Vector3 (float x, float y, float z)
         {
-            x = x0;
-            y = y0;
-            z = z0;
+            this.x = x;
+            this.y = y;
+            this.z = z;
         }
 
         /// <summary>
@@ -24,6 +24,11 @@ namespace Vector
         public float Magnitude ()
         {
             return (float) Math.Sqrt(x * x + y * y + z * z);
+        }
+
+        public float MagSquared ()
+        {
+            return x * x + y * y + z * z;
         }
 
         /// <summary>
@@ -147,16 +152,16 @@ namespace Vector
         public Vector3 normal;
         public float d;
 
-        public Plane(Vector3 normal0, float d0)
+        public Plane(Vector3 normal, float d)
         {
-            normal = normal0;
-            d = d0;
+            this.normal = normal;
+            this.d = d;
         }
 
-        public Plane(float x, float y, float z, float d0)
+        public Plane(float x, float y, float z, float d)
         {
             normal = new Vector3(x, y, z);
-            d = d0;
+            this.d = d;
         }
 
         public Plane (Vector3 o, Vector3 u, Vector3 v)
@@ -186,7 +191,7 @@ namespace Vector
             if (denominator == 0)
                 return (false, null, 0);
             float numerator = plane.d - plane.normal.x * line.origin.x - plane.normal.y * line.origin.y - plane.normal.z * line.origin.z;
-            float t = numerator / denominator;
+            float t = (numerator / denominator) * 0.999999f;
             return (true, line.origin + line.direction * t, t);
         }
     }

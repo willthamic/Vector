@@ -6,3 +6,13 @@ C:\Users\Will\OneDrive\Mine\Code\C#\Vector\Vector\bin\Debug\netstandard1.4\Vecto
 C:\Users\Will\OneDrive\Mine\Code\C#\Vector\Vector\bin\Debug\netstandard1.4\Vector.pdb
 C:\Users\Will\OneDrive\Mine\Code\C#\Vector\Vector\obj\Debug\netstandard1.4\Vector.dll
 C:\Users\Will\OneDrive\Mine\Code\C#\Vector\Vector\obj\Debug\netstandard1.4\Vector.pdb
+C:\Users\Will Hamic\OneDrive\Mine\Code\C#\Vector\Vector\bin\Debug\netstandard1.4\Vector.deps.json
+C:\Users\Will Hamic\OneDrive\Mine\Code\C#\Vector\Vector\bin\Debug\netstandard1.4\Vector.dll
+C:\Users\Will Hamic\OneDrive\Mine\Code\C#\Vector\Vector\bin\Debug\netstandard1.4\Vector.pdb
+C:\Users\Will Hamic\OneDrive\Mine\Code\C#\Vector\Vector\obj\Debug\netstandard1.4\Vector.csprojAssemblyReference.cache
+C:\Users\Will Hamic\OneDrive\Mine\Code\C#\Vector\Vector\obj\Debug\netstandard1.4\Vector.csproj.CoreCompileInputs.cache
+C:\Users\Will Hamic\OneDrive\Mine\Code\C#\Vector\Vector\obj\Debug\netstandard1.4\Vector.AssemblyInfo.cs
+C:\Users\Will Hamic\OneDrive\Mine\Code\C#\Vector\Vector\obj\Debug\netstandard1.4\Vector.dll
+C:\Users\Will Hamic\OneDrive\Mine\Code\C#\Vector\Vector\obj\Debug\netstandard1.4\Vector.pdb
+C:\Users\Will Hamic\OneDrive\Mine\Code\C#\Vector\Vector\obj\Debug\netstandard1.4\Vector.AssemblyInfoInputs.cache
+C:\Users\Will\OneDrive\Mine\Code\C#\Vector\Vector\obj\Debug\netstandard1.4\Vector.AssemblyInfoInputs.cache
